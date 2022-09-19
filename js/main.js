@@ -1,6 +1,6 @@
 function selectNumberRange(min, max) {
   if (min < 0 || max <= min) {
-    return null;
+    throw 'You passed invalid arguments';
   }
 
   return Math.floor(Math.random() * (max - min)) + min;
