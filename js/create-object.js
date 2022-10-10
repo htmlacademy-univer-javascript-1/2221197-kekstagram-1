@@ -1,5 +1,5 @@
-import {getRandomNum, getRandomId, getRandomItemWithoutExcludes, getRandomPhoto} from './util';
-import {DESCRIPTION, MESSAGE, NAMES} from './consts';
+import {getRandomNum, getRandomId, getRandomItemWithoutExcludes, getRandomPhoto} from './util.js';
+import {DESCRIPTION, MESSAGE, NAMES} from './consts.js';
 
 /**
  * @typedef {Object} Comment
