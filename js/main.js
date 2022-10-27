@@ -1,3 +1,3 @@
-import {generatePhotosData} from './create-object.js';
+import {generatePhotosData} from './create-photos-description.js';
 
 console.log(generatePhotosData());
