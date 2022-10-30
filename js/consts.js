@@ -27,7 +27,6 @@ export const MESSAGE = [
 ];
 
 export const NAMES = [
-  'Иван',
   'Хуан Себастьян',
   'Мария',
   'Кристоф',
