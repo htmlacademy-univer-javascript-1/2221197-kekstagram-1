@@ -6,7 +6,7 @@
  */
 export const getRandomNum = (min, max) => {
   if (min < 0 || max <= min) {
-    throw 'You passed invalid arguments';
+    throw "You passed invalid arguments";
   }
 
   return Math.floor(Math.random() * (max - min)) + min;
@@ -15,7 +15,7 @@ export const getRandomNum = (min, max) => {
 /**
  * @returns {number}
  */
-export function getRandomId(){
+export function getRandomId() {
   // От 25, так как ID от 1 до 25 выделены под пользователей
   return getRandomNum(25, 1000);
 }
@@ -34,7 +34,12 @@ export function getRandomItemWithoutExcludes(items, excludes) {
   return itemsWithoutExcludes[getRandomNum(0, itemsWithoutExcludes.length)];
 }
 
-export function getRandomPhoto(usedPhotos){
+/**
+ *
+ * @param {*[]} usedPhotos
+ * @returns {number}
+ */
+export function getRandomPhoto(usedPhotos) {
   let numberPhoto = getRandomNum(1, 25);
   while (numberPhoto in usedPhotos) {
     numberPhoto = getRandomNum(1, 25);
