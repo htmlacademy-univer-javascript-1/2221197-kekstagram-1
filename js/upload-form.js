@@ -1,4 +1,3 @@
-import {BODY} from './constants.js';
 import {sendForm} from './api.js';
 import {photoDataSection} from './render-photo-data-section.js';
 import {resetPhotoEffects} from './image-editing.js';
@@ -11,13 +10,13 @@ const imgUploadSubmit = imgUploadForm.querySelector('.img-upload__submit');
 
 const closeModalForm = () => {
   imgOverlay.classList.add('hidden');
-  BODY.classList.remove('modal-open');
+  document.body.classList.remove('modal-open');
   imgUploadForm.reset();
 };
 
 const onFileUploadClick = () => {
   imgOverlay.classList.remove('hidden');
-  BODY.classList.add('modal-open');
+  document.body.classList.add('modal-open');
 };
 
 const onUploadCancelClick = () => {
@@ -86,7 +85,7 @@ const onSuccess = () => {
   closeModalForm();
   imgUploadForm.reset();
   resetPhotoEffects();
-  BODY.insertAdjacentElement('beforeend', successMassage);
+  document.body.insertAdjacentElement('beforeend', successMassage);
   successMassage.classList.remove('hidden');
   successButton.addEventListener('click', onSuccessButtonClick);
   successMassage.addEventListener('click', onSuccessMassageSectionClick);
@@ -108,7 +107,7 @@ const onErrorButtonClick = () => {
 };
 
 const fail = () => {
-  BODY.insertAdjacentElement('beforeend', errorMassage);
+  document.body.insertAdjacentElement('beforeend', errorMassage);
   errorMassage.classList.remove('hidden');
   errorMassage.style.zIndex = '100';
   errorButton.addEventListener('click', onErrorButtonClick);
@@ -123,14 +122,14 @@ const onEscapeKeydown = (evt) => {
     }
     if (!imgOverlay.classList.contains('hidden') && !errorMassage.classList.contains('hidden')) {
       closeMassage(errorMassage);
-      BODY.classList.add('modal-open');
+      document.body.classList.add('modal-open');
     }
     if (imgOverlay.classList.contains('hidden') && !successMassage.classList.contains('hidden')) {
       closeMassage(successMassage);
     }
     if (!photoDataSection.classList.contains('hidden')) {
       photoDataSection.classList.add('hidden');
-      BODY.classList.remove('modal-open');
+      document.body.classList.remove('modal-open');
     }
   }
 };
@@ -145,7 +144,7 @@ imgUploadForm.addEventListener('submit', (evt) => {
   }
 });
 
-BODY.addEventListener('keydown', onEscapeKeydown);
+document.body.addEventListener('keydown', onEscapeKeydown);
 
 textInputs.forEach((textInput) => {
   textInput.addEventListener('keydown', (evt) => {
