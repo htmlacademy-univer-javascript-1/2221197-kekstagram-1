@@ -1,62 +1,49 @@
-/**
- * Возвращает случайное число от min до max
- * @param {number} min
- * @param {number} max
- * @returns {number}
- */
-export const getRandomNum = (min, max) => {
-  if (min < 0 || max <= min) {
-    throw "You passed invalid arguments";
-  }
-
-  return Math.floor(Math.random() * (max - min)) + min;
+const showAlert = (massage) => {
+  const alertBlock = document.createElement('div');
+  alertBlock.style.position = 'absolute';
+  alertBlock.style.top = '0';
+  alertBlock.style.left = '0';
+  alertBlock.style.right = '0';
+  alertBlock.style.padding = '10px';
+  alertBlock.style.zIndex = '100';
+  alertBlock.style.fontSize = '20px';
+  alertBlock.style.backgroundColor = '#FD4C4C';
+  alertBlock.style.color = '#FFF';
+  alertBlock.style.textAlign = 'center';
+  alertBlock.style.textTransform = 'none';
+  alertBlock.innerHTML = massage;
+  document.body.prepend(alertBlock);
+  setTimeout(() => alertBlock.remove(), 5000);
 };
 
-/**
- * @returns {number}
- */
-export function getRandomId() {
-  // От 25, так как ID от 1 до 25 выделены под пользователей
-  return getRandomNum(25, 1000);
-}
-
-/**
- *
- * @param {*[]} items
- * @param {*[]} excludes
- */
-export function getRandomItemWithoutExcludes(items, excludes) {
-  const itemsSet = new Set(items);
-  excludes.forEach((exclude) => {
-    itemsSet.delete(exclude);
-  });
-  const itemsWithoutExcludes = Array.from(itemsSet);
-  return itemsWithoutExcludes[getRandomNum(0, itemsWithoutExcludes.length)];
-}
-
-/**
- *
- * @param {*[]} usedPhotos
- * @returns {number}
- */
-export function getRandomPhoto(usedPhotos) {
-  let numberPhoto = getRandomNum(1, 25);
-  while (numberPhoto in usedPhotos) {
-    numberPhoto = getRandomNum(1, 25);
+const createRandomArray = (arrayLength) => {
+  const a1 = [];
+  for (let i = 0; i < arrayLength; i++) {
+    a1.push(i);
   }
-  return numberPhoto;
-}
-
-const fillArrayWithNumbers = (array, minValue, maxValue) => {
-  for (let i = minValue; i <= maxValue; i++) {
-    array.push(i);
+  const a2 = [];
+  while (a1.length) {
+    const pos = Math.random() * a1.length;
+    const element = a1.splice(pos, 1)[0];
+    a2.push(element);
   }
-  return array;
+  return a2;
 };
 
-export {fillArrayWithNumbers};
+function debounce(callback, timeoutDelay = 500) {
+  // Используем замыкания, чтобы id таймаута у нас навсегда приклеился
+  // к возвращаемой функции с setTimeout, тогда мы его сможем перезаписывать
+  let timeoutId;
+  return (...rest) => {
+    // Перед каждым новым вызовом удаляем предыдущий таймаут,
+    // чтобы они не накапливались
+    clearTimeout(timeoutId);
+    // Затем устанавливаем новый таймаут с вызовом колбэка на ту же задержку
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+    // Таким образом цикл «поставить таймаут - удалить таймаут» будет выполняться,
+    // пока действие совершается чаще, чем переданная задержка timeoutDelay
+  };
+}
 
-//
-// function checkStringLength(comment, maxLength) {
-//   return comment.length <= maxLength;
-// }
+
+export {showAlert, createRandomArray, debounce};
