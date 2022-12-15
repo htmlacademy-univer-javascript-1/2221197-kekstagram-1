@@ -47,6 +47,15 @@ export function getRandomPhoto(usedPhotos) {
   return numberPhoto;
 }
 
+const fillArrayWithNumbers = (array, minValue, maxValue) => {
+  for (let i = minValue; i <= maxValue; i++) {
+    array.push(i);
+  }
+  return array;
+};
+
+export {fillArrayWithNumbers};
+
 //
 // function checkStringLength(comment, maxLength) {
 //   return comment.length <= maxLength;
