@@ -1,5 +1,4 @@
 import {containerUsersPicture} from './miniature-picture.js';
-import {BODY} from './constants.js';
 
 const photoDataSection = document.querySelector('.big-picture');
 const photoDataSectionCloseButton = photoDataSection.querySelector('.big-picture__cancel');
@@ -81,7 +80,7 @@ function renderPhotoDataSection(publications) {
 
 const closeBigPictureModal = () => {
   photoDataSection.classList.add('hidden');
-  BODY.classList.remove('modal-open');
+  document.body.classList.remove('modal-open');
   commentLoader.removeEventListener('click', onCommentLoaderClick);
 };
 
@@ -92,7 +91,7 @@ const onBigPictureCancelClick = () => {
 const onThumbnailClick = (evt) => {
   if (evt.target.className === 'picture__img') {
     photoDataSection.classList.remove('hidden');
-    BODY.classList.add('modal-open');
+    document.body.classList.add('modal-open');
     photoDataSectionCloseButton.addEventListener('click', onBigPictureCancelClick);
   }
 };
