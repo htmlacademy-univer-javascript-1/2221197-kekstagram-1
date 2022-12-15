@@ -43,7 +43,10 @@ const onCommentLoaderClick = () => {
     commentLoader.classList.add('hidden');
   }
 };
-
+/**
+ *
+ * @param {Object} publications
+ */
 function renderPhotoDataSection(publications) {
   containerUsersPicture.addEventListener('click', (evt) => {
     if (evt.target.className === 'picture__img') {
