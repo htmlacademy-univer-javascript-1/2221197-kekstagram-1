@@ -1,16 +1,19 @@
-import {generatePhotosData as generatePhoto} from './create-photos-description.js';
+import {generatePhotosData} from './create-photos-description.js';
 
-const pictureTemplate = document
-  .querySelector("#picture")
-  .content.querySelector(".picture");
-const picturesElements = document.querySelector(".pictures");
-const pictures = generatePhoto();
+const publications = generatePhotosData();
+const containerUsersPicture = document.querySelector('.pictures.container');
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-pictures.forEach((picture) => {
+const pictureListFragment = document.createDocumentFragment();
+
+publications.forEach(({url, likes, comments}) => {
   const pictureElement = pictureTemplate.cloneNode(true);
-  pictureElement.querySelector('.picture__img').src = picture.url;
-  const pictureDescription = pictureElement.querySelector('.picture__info');
-  pictureDescription.querySelector('.picture__comments').textContent = (picture.description).length;
-  pictureDescription.querySelector('.picture__likes').textContent = picture.likes;
-  picturesElements.appendChild(pictureElement);
+  pictureElement.querySelector('.picture__img').setAttribute('src', url);
+  pictureElement.querySelector('.picture__likes').textContent = likes;
+  pictureElement.querySelector('.picture__comments').textContent = comments.length;
+  pictureListFragment.append(pictureElement);
 });
+
+containerUsersPicture.append(pictureListFragment);
+
+export {publications};
