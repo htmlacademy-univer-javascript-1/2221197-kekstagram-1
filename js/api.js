@@ -7,7 +7,6 @@ fetch('https://25.javascript.pages.academy/kekstagram/data')
     if (response.ok) {
       response.json()
         .then((data) => {
-          //renderPublications(data);
           getPublications(data);
           renderPhotoDataSection(data);
         });
